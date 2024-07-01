@@ -15,6 +15,23 @@ This model leverages Multi-Head Attention mechanisms along with Conv1D and LSTM 
 
 ![Model 2 Architecture](figures/mermaid-diagram-2024-06-19-125750.png)
 
+### Predictions with Confidence Intervals
+This plot shows the predicted water levels with confidence intervals, indicating the range within which the true water levels are expected to lie.
+
+![Predictions with Confidence Intervals](figures/predictions_with_confidence_intervals.png)
+
+### Peak Analysis
+Comparative analysis of actual vs. predicted water levels for the most significant peaks observed in the testing data.
+
+#### Peak Analysis Case 1
+![Peak Analysis Case 1](figures/peak_analysis_case1.png)
+
+#### Peak Analysis Case 2
+![Peak Analysis Case 2](figures/peak_analysis_case2.png)
+
+#### Peak Analysis Case 3
+![Peak Analysis Case 3](figures/peak_analysis_case3.png)
+
 ## Installation
 To install the required dependencies, run:
 ```sh
