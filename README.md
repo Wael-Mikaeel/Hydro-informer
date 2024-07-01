@@ -10,6 +10,11 @@ This repository contains the data, code, and models for the Hydro-Informer proje
 - `models/`: Contains trained model files.
 - `docs/`: Contains additional documentation.
 
+### Model
+This model leverages Multi-Head Attention mechanisms along with Conv1D and LSTM layers to enhance the predictive performance by focusing on relevant features in the sequence data.
+
+![Model 2 Architecture](figures/mermaid-diagram-2024-06-19-125750.png)
+
 ## Installation
 To install the required dependencies, run:
 ```sh
