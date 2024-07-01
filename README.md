@@ -24,13 +24,13 @@ This plot shows the predicted water levels with confidence intervals, indicating
 Comparative analysis of actual vs. predicted water levels for the most significant peaks observed in the testing data.
 
 #### Peak Analysis Case 1
-![Peak Analysis Case 1](figures/peak_analysis_case1.png)
+![Peak Analysis Case 1](figures/actual_vs_predicted_peak_comparison_case 1___.png)
 
 #### Peak Analysis Case 2
-![Peak Analysis Case 2](figures/peak_analysis_case2.png)
+![Peak Analysis Case 2](figures/actual_vs_predicted_peak_comparison_case 2___.png)
 
 #### Peak Analysis Case 3
-![Peak Analysis Case 3](figures/peak_analysis_case3.png)
+![Peak Analysis Case 3](figures/actual_vs_predicted_peak_comparison_case 3___.png)
 
 ## Installation
 To install the required dependencies, run:
