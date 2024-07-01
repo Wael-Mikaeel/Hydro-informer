@@ -32,6 +32,9 @@ Comparative analysis of actual vs. predicted water levels for the most significa
 #### Peak Analysis Case 3
 ![Peak Analysis Case 3](figures/actual_vs_predicted_peak_comparison_case3___.png)
 
+## Data
+The dataset utilized for this study was obtained from the Slovak Hydrometeorological Institute, encompassing a comprehensive range of hourly measurements, including water levels, discharge rates, and precipitation levels.
+
 ## Installation
 To install the required dependencies, run:
 ```sh
