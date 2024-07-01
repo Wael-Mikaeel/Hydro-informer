@@ -30,7 +30,7 @@ Comparative analysis of actual vs. predicted water levels for the most significa
 ![Peak Analysis Case 2](figures/actual_vs_predicted_peak_comparison_case2__.png)
 
 #### Peak Analysis Case 3
-![Peak Analysis Case 3](figures/actual_vs_predicted_peak_comparison_case3_.png)
+![Peak Analysis Case 3](figures/actual_vs_predicted_peak_comparison_case3___.png)
 
 ## Installation
 To install the required dependencies, run:
