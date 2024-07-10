@@ -6,9 +6,8 @@ This repository contains the data, code, and models for the Hydro-Informer proje
 ## Directory Structure
 - `data/`: Contains the datasets used for training and testing.
 - `src/`: Contains the source code for data preprocessing, model training, and evaluation.
-- `notebooks/`: Contains Jupyter notebooks for exploratory data analysis and model development.
-- `models/`: Contains trained model files.
-- `docs/`: Contains additional documentation.
+- `notebooks/`: Contains Jupyter notebooks for exploratory data analysis and model development [To be added].
+- `models/`: Contains trained model files [To be added].
 
 ### Model
 This model leverages Multi-Head Attention mechanisms along with Conv1D and LSTM layers to enhance the predictive performance by focusing on relevant features in the sequence data.
