@@ -13,7 +13,7 @@ This repository contains the data, code, and models for the Hydro-Informer proje
 ### Model
 This model leverages Multi-Head Attention mechanisms along with Conv1D and LSTM layers to enhance the predictive performance by focusing on relevant features in the sequence data.
 
-![Model 2 Architecture](figures/figure1.png)
+![Model 2 Architecture](figures/figure1.PNG)
 
 ### Predictions with Confidence Intervals
 This plot shows the predicted water levels with confidence intervals, indicating the range within which the true water levels are expected to lie.
