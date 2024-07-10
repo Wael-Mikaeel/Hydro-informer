@@ -27,16 +27,12 @@ def compile_and_train_model_1(model, X_train, y_train, X_test, y_test, epochs=20
     return loss
 
 def build_model_2(input_shapes, d_model=64, num_heads=2):
-    input_layers = [Input(shape=(shape[1], 1)) for shape in input_shapes[:-1]]
-    input_forecast = Input(shape=input_shapes[-1])
+    input_layers = [Input(shape=(shape[1], 1)) for shape in input_shapes]
     
     embedding_layers = [Dense(d_model, activation='relu')(input) for input in input_layers]
     concat_layer = Concatenate()(embedding_layers)
-    concat_layer_ = concat_layer * tf.math.sqrt(tf.cast(d_model, tf.float32))
 
-    forecast_embedding = Dense(d_model, activation='relu')(input_forecast)
-    
-    conv_layer = Conv1D(filters=d_model, kernel_size=6, activation='relu', padding="same")(concat_layer_)
+    conv_layer = Conv1D(filters=d_model, kernel_size=6, activation='relu', padding="same")(concat_layer)
     conv_layer = SpatialDropout1D(0.2)(conv_layer)
     
     lstm_layer = Bidirectional(GRU(d_model, activation='relu', return_sequences=True),
@@ -57,7 +53,7 @@ def build_model_2(input_shapes, d_model=64, num_heads=2):
     
     lstm_layer_2 = Bidirectional(GRU(d_model, activation='relu', return_sequences=True),
                                  backward_layer=LSTM(d_model, activation='relu', return_sequences=True, go_backwards=True),
-                                 merge_mode='sum')(concat_layer_)
+                                 merge_mode='sum')(concat_layer)
     
     conv_residual = Conv1D(filters=d_model, kernel_size=6, activation='relu', padding="same")(lstm_layer_2)
     
@@ -65,34 +61,13 @@ def build_model_2(input_shapes, d_model=64, num_heads=2):
     
     residual_connection_2 = Add()([conv_residual, multi_head_attention_2])
     
-    output_layer = TimeDistributed(Dense(d_model))(residual_connection_2)
-    output_layer = Flatten()(output_layer)
-    output_layer_1 = Dense(12)(output_layer)
-    output_layer_1 = Reshape((12, 1))(output_layer_1)
-    
-    forecast_embedding = GRU(d_model, activation='relu', return_sequences=True, go_backwards=True)(forecast_embedding)
-    forecast_embedding = Conv1D(filters=d_model, kernel_size=3, activation='relu', padding="same")(forecast_embedding)
-    forecast_embedding = TimeDistributed(Dense(d_model))(forecast_embedding)
-    forecast_embedding = Flatten()(forecast_embedding)
-    output_layer_2 = Dense(12)(forecast_embedding)
-    output_layer_2 = Reshape((12, 1))(output_layer_2)
-    
-    multi_head_attention_3 = MultiHeadAttention(num_heads=num_heads, key_dim=d_model)(output_layer_1, output_layer_2, output_layer_2)
-    
-    output_layer_1 = Add()([output_layer_1, multi_head_attention_3])
-    output_layer_2 = Add()([output_layer_2, multi_head_attention_3])
-    
-    output_layer = Concatenate()([output_layer_1, output_layer_2])
-    output_layer = Reshape((12, 2))(output_layer)
-    output_layer = LSTM(d_model, activation='relu', return_sequences=True, go_backwards=True)(output_layer)
-    output_layer = Conv1D(filters=d_model, kernel_size=3, activation='relu', padding="same")(output_layer)
+    output_layer = TimeDistributed(Dense(d_model*2))(residual_connection_2)
     output_layer = TimeDistributed(Dense(d_model))(output_layer)
     output_layer = Flatten()(output_layer)
-    output_layer = Dense(128)(output_layer)
     output_layer = Dense(12)(output_layer)
     output_layer = Reshape((12, 1))(output_layer)
     
-    model = Model(inputs=input_layers + [input_forecast], outputs=output_layer)
+    model = Model(inputs=input_layers, outputs=output_layer)
     return model
 
 def compile_and_train_model_2(model, X_train_list, y_train, X_test_list, y_test, epochs=20, batch_size=16):
